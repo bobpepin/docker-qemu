@@ -1,0 +1,20 @@
+#cloud-config
+growpart:
+  mode: auto
+  devices: ['/']
+
+packages:
+  - cifs-utils
+  - docker.io
+package_upgrade: true
+power_state:
+  mode: reboot
+
+mounts:
+  - ["//10.0.2.4/qemu", "/qemu", "cifs", "nofail,guest,file_mode=0777,dir_mode=0777", "0", "0"]
+
+ssh_authorized_keys: [""]
+
+password: passw0rd
+chpasswd: { expire: False }
+ssh_pwauth: True
